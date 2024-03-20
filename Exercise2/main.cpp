@@ -30,10 +30,7 @@ double cambioIntervallo(double numFileInput)
 int main(){
 
     int numeroRigheFileInput = 0;
-    // const int N = 8000;
-    // bool dimFile = true;
     double valFileInput = 0;
-    double numFileIn;
     double numCambioIntervalloOut;
     double sommaOut = 0;
     double mediaOut;
@@ -42,17 +39,28 @@ int main(){
 
     ofstream nomeFileOutput("result.csv"); // apro il file di output
 
+    if(nomeFileInput.fail()){
+        cerr << "il file di input che hai inserito non è stato trovato\n" << endl; // Il file di input che hai inserito non e' stato trovato\n
+        return 1;
+    }
+
     string header;
     nomeFileOutput << header << "# N mean\n";
 
-    while(nomeFileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){
+    while(nomeFileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){ // leggo dal file di input tutti i valori
 
         numCambioIntervalloOut = cambioIntervallo(valFileInput);
-        numFileIn = numCambioIntervalloOut;
-        sommaOut += numFileIn;
+
+        // funzione che fa passare i valori dall'intervallo [1,5] all'intervallo [-1,2]
+        // se il numero di righe del file è minore della costante intera (const int) N
+        // che rappresenta la dimensione dei vettori (double) dichiarata all'inizio del file
+
+        sommaOut += numCambioIntervalloOut;
         mediaOut = sommaOut/(numeroRigheFileInput+1);
-        cout << "somma " << numeroRigheFileInput+1 << ": " << fixed <<  setprecision (16) << scientific << sommaOut << "\n";
-        nomeFileOutput << numeroRigheFileInput+1 << " " << fixed <<  setprecision (16) << scientific << mediaOut << "\n"; // scrivo sul file di output tutti i valori che ho calcolato e che ho messo all'interno del vettore mediaOut
+        nomeFileOutput << numeroRigheFileInput+1 << " " << fixed <<  setprecision (16) << scientific << mediaOut << "\n";
+
+        // scrivo sul file di output tutti i valori che ho calcolato e che ho messo all'interno del vettore mediaOut
+
         numeroRigheFileInput++;
 
     }
@@ -61,45 +69,7 @@ int main(){
 
     nomeFileOutput.close(); // chiudo il file di output
 
-    // if(nomeFileInput.is_open()){
 
-    //     while(nomeFileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){ // leggo dal file di input tutti i valori
-
-    //         if(numeroRigheFileInput < N && dimFile == true){
-    //            numFileIn[numeroRigheFileInput] = valFileInput; // copio i valori che ho letto in un vettore
-    //                                                            // se il numero di righe del file è minore della costante intera (const int) N
-    //                                                            // che rappresenta la dimensione dei vettori (double) dichiarata all'inizio del file
-
-    //         }else{
-    //            dimFile = false;
-    //         }
-    //         numeroRigheFileInput++;
-    //     }
-
-    // }else{
-
-    //     cerr << "Il file di input che hai inserito non e' stato trovato\n" << endl;
-    //     return 1;
-    // }
-
-    // if(dimFile == false){
-    //     cout << "Il numero di righe del file ha una dimensione piu' grande della dimensione del vettore\n" << endl;
-
-    // }else{
-
-    //     for(int i = 0; i < numeroRigheFileInput; i++){
-    //         numCambioIntervalloOut[i] = cambioIntervallo(numFileIn[i]); // funzione che fa passare i valori dall'intervallo [1,5] all'intervallo [-1,2]
-    //     }
-    // }
-
-    // nomeFileInput.close(); // chiudo il file di input
-
-    // ofstream nomeFileOutput("result.csv"); // apro il file di output
-
-    // if(nomeFileOutput.is_open() && dimFile == true){
-
-    //     string header;
-    //     nomeFileOutput << header << "# N mean\n";
 
     // for(int i = 0; i < numeroRigheFileInput; i++){ // inserisco la media dei valori che adesso sono nell'intervallo [-1,2] nel vettore mediaOut
 
@@ -119,27 +89,11 @@ int main(){
 
     //       mediaOut[i] = numCambioIntervalloOut[i]; // il primo valore della media rimane uguale
 
-    //       sommaOut[i] = numCambioIntervalloOut[i];
-    //  }
 
     //  if(i == 1){
 
-    //      mediaOut[i] = 1./2. * (numCambioIntervalloOut[i] + numCambioIntervalloOut[i-1]); // il secondo valore della media è dato dalla somma dei primi due valori divisa per 2
-
-    //      sommaOut[i] = numCambioIntervalloOut[i-1] + numCambioIntervalloOut[i];
-
-    //  }
-
-    // if(i > 1){
-    //     sommaOut[i] = sommaOut[i-1] + numCambioIntervalloOut[i];
-    //     mediaOut[i] = sommaOut[i]/(i+1);
-    // }
-
-    // nomeFileOutput << i+1 << " " << fixed <<  setprecision (16) << scientific << mediaOut[i] << "\n"; // scrivo sul file di output tutti i valori che ho calcolato e che ho messo all'interno del vettore mediaOut
-    // }
-    // }
-
-    // nomeFileOutput.close(); // chiudo il file di output
+    //      mediaOut[i] = 1./2. * (numCambioIntervalloOut[i] + numCambioIntervalloOut[i-1]);
+    // il secondo valore della media è dato dalla somma dei primi due valori divisa per 2
 
     return 0;
 }
