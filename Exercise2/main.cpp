@@ -31,9 +31,9 @@ int main(){
 
     int numeroRigheFileInput = 0;
     double valFileInput = 0;
-    double numCambioIntervalloOut;
+    double numCambioIntervalloOut = 0;
     double sommaOut = 0;
-    double mediaOut;
+    double mediaOut = 0;
 
     ifstream nomeFileInput("data.csv"); // apro il file di input
 
@@ -54,7 +54,6 @@ int main(){
         // funzione che fa passare i valori dall'intervallo [1,5] all'intervallo [-1,2]
         // se il numero di righe del file è minore della costante intera (const int) N
         // che rappresenta la dimensione dei vettori (double) dichiarata all'inizio del file
-
         sommaOut += numCambioIntervalloOut;
         mediaOut = sommaOut/(numeroRigheFileInput+1);
         nomeFileOutput << numeroRigheFileInput+1 << " " << fixed <<  setprecision (16) << scientific << mediaOut << "\n";
