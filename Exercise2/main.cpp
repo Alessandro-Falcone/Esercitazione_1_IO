@@ -35,42 +35,54 @@ int main(){
     double sommaOut = 0;
     double mediaOut = 0;
 
-    ifstream nomeFileInput("data.csv"); // apro il file di input
+    ifstream nomeFileInput("data.csv"); // Apro il file di input
 
-    ofstream nomeFileOutput("result.csv"); // apro il file di output
+    ofstream nomeFileOutput("result.csv"); // Apro il file di output
 
-    if(nomeFileInput.fail()){
-        cerr << "il file di input che hai inserito non è stato trovato\n" << endl; // Il file di input che hai inserito non e' stato trovato\n
+    if(nomeFileInput.fail()){ // Controllo che il file di input esista e sia stato aperto correttamente
+
+        cerr << "il file di input che hai inserito non è stato trovato\n" << endl;
+        // Messaggio di errore che dice che il file di input inserito non e' stato trovato
+
         return 1;
     }
 
     string header;
-    nomeFileOutput << header << "# N mean\n";
+    nomeFileOutput << header << "# N mean\n"; // Inserisco stringa all'inizio del file di Output
 
-    while(nomeFileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){ // leggo dal file di input tutti i valori
+    while(nomeFileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){ // Leggo dal file di input tutti i valori
 
         numCambioIntervalloOut = cambioIntervallo(valFileInput);
-        // attraverso la funzione cambioIntervallo i valori del file in input (valFileInput)
-        // che sono nell'intervallo [1,5] passano nell'intervallo [-1,2]
-        // e una volta fatto questo vado a mettere i valori, che adesso sono nell'intervallo [-1,2], nella variabile numCambioIntervalloOut
+        // Attraverso la funzione cambioIntervallo i valori del file in input (valFileInput)
+        // che sono nell'intervallo [1,5] passano nell'intervallo [-1,2],
+        // una volta fatto questo inserisco i valori appena calcolati, che adesso sono nell'intervallo [-1,2],
+        // nella variabile numCambioIntervalloOut.
+        // Ripeto questa operazione fino a che non ho raggiunto la fine del file che sto leggendo
 
         sommaOut += numCambioIntervalloOut;
-        // prende ogni valore nuovo che è nell'intervallo [-1,2] e fa la somma con la sommaOut precedente
+        // Nella variabile sommaOut vado ad inserire la somma tra ogni valore nuovo (numCambioIntervalloOut), che è nell'intervallo [-1,2],
+        // e la sommaOut precedente.
+        // Ripeto questa operazione fino a che non ho raggiunto la fine del file che sto leggendo
 
         mediaOut = sommaOut/(numeroRigheFileInput+1);
-        // divide la sommaOut (valori sommati) per il numero di valori di cui è stata fatta la somma e inserisce il risultato nella variabile mediaOut
-        // è necessario fare numeroRigheFileInput+1 in quanto si parte a contare da 0
+        // Nella variabile mediaOut inserisco il risultato della divisione tra la sommaOut (valori sommati)
+        // e il numero di valori di cui è stata fatta la somma.
+        // E' necessario sommare numeroRigheFileInput+1 in quanto si parte a contare da 0
+        // Ripeto questa operazione fino a che non ho raggiunto la fine del file che sto leggendo
 
         nomeFileOutput << numeroRigheFileInput+1 << " " << fixed <<  setprecision (16) << scientific << mediaOut << "\n";
-        // scrivo sul file di output tutti i valori che ho calcolato e che ho messo all'interno del variabile mediaOut
+        // Scrivo sul file di output tutti i valori che ho calcolato, che sono stati inseriti all'interno del variabile mediaOut
+        // Ripeto questa operazione fino a che non ho raggiunto la fine del file che sto leggendo
 
-        numeroRigheFileInput++; // contatore delle righe del file
+        numeroRigheFileInput++; // Contatore delle righe del file
 
     }
 
-    nomeFileInput.close(); // chiudo il file di input
+    nomeFileInput.close(); // Chiudo il file di input
 
-    nomeFileOutput.close(); // chiudo il file di output
+    nomeFileOutput.close(); // Chiudo il file di output
+
+    // Verifico che i valori scritti su file siano corretti
 
     return 0;
 }
