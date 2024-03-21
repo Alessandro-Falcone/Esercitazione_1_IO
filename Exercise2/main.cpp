@@ -4,7 +4,7 @@
 
 using namespace std;
 
-double cambioIntervallo(double numFileInput)
+double cambioIntervallo(double numFileInput) // funzione che fa passare i valori dall'intervallo [1,5] all'intervallo [-1,2]
 {
     double numFileOutput;
 
@@ -50,44 +50,27 @@ int main(){
     while(nomeFileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){ // leggo dal file di input tutti i valori
 
         numCambioIntervalloOut = cambioIntervallo(valFileInput);
-
-        // funzione che fa passare i valori dall'intervallo [1,5] all'intervallo [-1,2]
-        // se il numero di righe del file è minore della costante intera (const int) N
-        // che rappresenta la dimensione dei vettori (double) dichiarata all'inizio del file
+        // attraverso la funzione cambioIntervallo i valori del file in input (valFileInput)
+        // che sono nell'intervallo [1,5] passano nell'intervallo [-1,2]
+        // e una volta fatto questo vado a mettere i valori, che adesso sono nell'intervallo [-1,2], nella variabile numCambioIntervalloOut
 
         sommaOut += numCambioIntervalloOut;
+        // prende ogni valore nuovo che è nell'intervallo [-1,2] e fa la somma con la sommaOut precedente
+
         mediaOut = sommaOut/(numeroRigheFileInput+1);
+        // divide la sommaOut (valori sommati) per il numero di valori di cui è stata fatta la somma e inserisce il risultato nella variabile mediaOut
+        // è necessario fare numeroRigheFileInput+1 in quanto si parte a contare da 0
+
         nomeFileOutput << numeroRigheFileInput+1 << " " << fixed <<  setprecision (16) << scientific << mediaOut << "\n";
+        // scrivo sul file di output tutti i valori che ho calcolato e che ho messo all'interno del variabile mediaOut
 
-        // scrivo sul file di output tutti i valori che ho calcolato e che ho messo all'interno del vettore mediaOut
-
-        numeroRigheFileInput++;
+        numeroRigheFileInput++; // contatore delle righe del file
 
     }
 
     nomeFileInput.close(); // chiudo il file di input
 
     nomeFileOutput.close(); // chiudo il file di output
-
-
-
-    // for(int i = 0; i < numeroRigheFileInput; i++){ // inserisco la media dei valori che adesso sono nell'intervallo [-1,2] nel vettore mediaOut
-
-    // if(i == 0){
-    //    mediaOut[i] = numCambioIntervalloOut[i]; // il primo valore della media rimane uguale
-    // }
-
-    // if(i == 1){
-    //    mediaOut[i] = 1./2. * (numCambioIntervalloOut[i] + numCambioIntervalloOut[i-1]); // il secondo valore della media è dato dalla somma dei primi due valori divisa per 2
-    // }
-
-    // if(i > 1){
-    //    mediaOut[i] = abs(1./4. * (numCambioIntervalloOut[i-2] + numCambioIntervalloOut[i-1] + 2 * numCambioIntervalloOut[i])); // tutti gli altri valori seguono la seguente formula
-    //     }
-
-     // il primo valore della media rimane uguale
-
-    // il secondo valore della media è dato dalla somma dei primi due valori divisa per 2
 
     return 0;
 }
