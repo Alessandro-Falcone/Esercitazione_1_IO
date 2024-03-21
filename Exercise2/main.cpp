@@ -4,13 +4,13 @@
 
 using namespace std;
 
-double cambioIntervallo(double numFileInput) // funzione che fa passare i valori dall'intervallo [1,5] all'intervallo [-1,2]
+double cambioIntervallo(double numFileInput) // Funzione che fa passare i valori dall'intervallo [1,5] all'intervallo [-1,2]
 {
     double numFileOutput;
 
     numFileOutput = (3./4. * numFileInput) - 7./4.;
 
-    // per costruire la funzione di cambio intervallo ho fatto in questo modo
+    // Per costruire la funzione di cambio intervallo ho fatto in questo modo
     // [a,b] = [1,5] -> [-1,1] -> [c,d] = [-1,2]
     // dove per passare dall'intervallo [1,5] a [-1,1] (prima freccia) ho usato
     // la funzione di cambio intervallo x = ((b-a) * t) + (b+a)/2 dove t = (2 * x - (b+a)) / (b-a)
@@ -35,9 +35,9 @@ int main(){
     double sommaOut = 0;
     double mediaOut = 0;
 
-    ifstream nomeFileInput("data.csv"); // Apro il file di input
+    ifstream nomeFileInput("data.csv"); // Apro il file di input in modalità lettura
 
-    ofstream nomeFileOutput("result.csv"); // Apro il file di output
+    ofstream nomeFileOutput("result.csv"); // Apro il file di output in modalità scrittura
 
     if(nomeFileInput.fail()){ // Controllo che il file di input esista e sia stato aperto correttamente
 
@@ -48,7 +48,7 @@ int main(){
     }
 
     string header;
-    nomeFileOutput << header << "# N mean\n"; // Inserisco stringa all'inizio del file di Output
+    nomeFileOutput << header << "# N mean\n"; // Inserisco stringa all'inizio del file di output
 
     while(nomeFileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){ // Leggo dal file di input tutti i valori
 
@@ -78,6 +78,8 @@ int main(){
 
     }
 
+    // Esco dal ciclo while ho letto tutto il file di input "data.csv" e ho finito di scrivere sul file di output "result.csv"
+
     nomeFileInput.close(); // Chiudo il file di input
 
     nomeFileOutput.close(); // Chiudo il file di output
@@ -85,4 +87,4 @@ int main(){
     // Verifico che i valori scritti su file siano corretti
 
     return 0;
-}
+} // Finisce il programma
