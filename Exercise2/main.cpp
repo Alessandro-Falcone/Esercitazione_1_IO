@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <string.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -25,7 +25,6 @@ double cambioIntervallo(double numFileInput) // Funzione che fa passare i valori
 
     return numFileOutput;
 }
-
 
 int main(){
 
@@ -86,6 +85,7 @@ int main(){
 
     return 0;
 }
+
 
 // Finisce il programma
 // Apro il file "result.csv" e verifico che i valori sono corretti,
