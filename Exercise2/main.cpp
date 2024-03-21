@@ -87,4 +87,7 @@ int main(){
     // Verifico che i valori scritti su file siano corretti
 
     return 0;
-} // Finisce il programma
+}
+
+// Verifico che i valori scritti su file siano corretti
+// Finisce il programma
