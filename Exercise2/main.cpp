@@ -41,7 +41,7 @@ int main(){
 
     if(nomeFileInput.fail()){ // Controllo che il file di input esista e sia stato aperto correttamente
 
-        cerr << "il file di input che hai inserito non è stato trovato\n" << endl;
+        cerr << "il file di input che hai inserito non e' stato trovato\n" << endl;
         // Messaggio di errore che dice che il file di input inserito non e' stato trovato
 
         return 1;
@@ -84,10 +84,9 @@ int main(){
 
     nomeFileOutput.close(); // Chiudo il file di output
 
-    // Verifico che i valori scritti su file siano corretti
-
     return 0;
 }
 
-// Verifico che i valori scritti su file siano corretti
 // Finisce il programma
+// Apro il file "result.csv" e verifico che i valori sono corretti,
+// se gli ultimi numeri convergono verso il punto medio dell'intervallo [-1,2] ovvero (-1+2)/2 = 0.5 sono corretti
