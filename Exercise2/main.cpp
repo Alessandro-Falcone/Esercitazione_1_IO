@@ -88,5 +88,5 @@ int main(){
 
 
 // Finisce il programma
-// Apro il file "result.csv" e verifico che i valori sono corretti,
+// Apro il file "result.csv" e verifico che i valori siano corretti,
 // se gli ultimi numeri convergono verso il punto medio dell'intervallo [-1,2] ovvero (-1+2)/2 = 0.5 sono corretti
