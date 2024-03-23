@@ -6,7 +6,7 @@ using namespace std;
 
 double cambioIntervallo(double numFileInput) // Funzione che fa passare i valori dall'intervallo [1,5] all'intervallo [-1,2]
 {
-    double numFileOutput;
+    double numFileOutput = 0;
 
     numFileOutput = (3./4. * numFileInput) - 7./4.;
 
@@ -28,17 +28,17 @@ double cambioIntervallo(double numFileInput) // Funzione che fa passare i valori
 
 int main(){
 
-    int numeroRigheFileInput = 0;
+    unsigned int numeroRigheFileInput = 0;
     double valFileInput = 0;
     double numCambioIntervalloOut = 0;
     double sommaOut = 0;
     double mediaOut = 0;
 
-    ifstream nomeFileInput("data.csv"); // Apro il file di input in modalità lettura
+    ifstream fileInput("data.csv"); // Apro il file di input in modalità lettura
 
-    ofstream nomeFileOutput("result.csv"); // Apro il file di output in modalità scrittura
+    ofstream fileOutput("result.csv"); // Apro il file di output in modalità scrittura
 
-    if(nomeFileInput.fail()){ // Controllo che il file di input esista e sia stato aperto correttamente
+    if(fileInput.fail()){ // Controllo che il file di input esista e sia stato aperto correttamente
 
         cerr << "il file di input che hai inserito non e' stato trovato\n" << endl;
         // Messaggio di errore che dice che il file di input inserito non e' stato trovato
@@ -47,9 +47,9 @@ int main(){
     }
 
     string header;
-    nomeFileOutput << header << "# N mean\n"; // Inserisco stringa all'inizio del file di output
+    fileOutput << header << "# N mean\n"; // Inserisco stringa all'inizio del file di output
 
-    while(nomeFileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){ // Leggo dal file di input tutti i valori
+    while(fileInput >> fixed >> setprecision (16) >> scientific >> valFileInput){ // Leggo dal file di input tutti i valori
 
         numCambioIntervalloOut = cambioIntervallo(valFileInput);
         // Attraverso la funzione cambioIntervallo i valori del file in input (valFileInput)
@@ -69,23 +69,21 @@ int main(){
         // E' necessario sommare numeroRigheFileInput+1 in quanto si parte a contare da 0
         // Ripeto questa operazione fino a che non ho raggiunto la fine del file che sto leggendo
 
-        nomeFileOutput << numeroRigheFileInput+1 << " " << fixed <<  setprecision (16) << scientific << mediaOut << "\n";
+        fileOutput << numeroRigheFileInput+1 << " " << fixed <<  setprecision (16) << scientific << mediaOut << "\n";
         // Scrivo sul file di output tutti i valori che ho calcolato, che sono stati inseriti all'interno del variabile mediaOut
         // Ripeto questa operazione fino a che non ho raggiunto la fine del file che sto leggendo
 
         numeroRigheFileInput++; // Contatore delle righe del file
-
     }
 
     // Esco dal ciclo while ho letto tutto il file di input "data.csv" e ho finito di scrivere sul file di output "result.csv"
 
-    nomeFileInput.close(); // Chiudo il file di input
+    fileInput.close(); // Chiudo il file di input
 
-    nomeFileOutput.close(); // Chiudo il file di output
+    fileOutput.close(); // Chiudo il file di output
 
     return 0;
 }
-
 
 // Finisce il programma
 // Apro il file "result.csv" e verifico che i valori siano corretti,
